@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-green-500;
+  }
+}
+
+/* Custom Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thumb-green-500::-webkit-scrollbar-thumb {
+  background: #22c55e;
+}
+
+.scrollbar-track-black::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* CRT Effect */
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Protocol Underline Animation */
+@keyframes underline {
+  0% {
+    transform: scaleX(0);
+    filter: brightness(1.5);
+  }
+  100% {
+    transform: scaleX(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes glow {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px #22c55e);
+  }
+  50% {
+    filter: brightness(1.5) drop-shadow(0 0 5px #22c55e);
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0px #22c55e);
+  }
+}
+
+/* Line Animations */
+@keyframes slideHorizontal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes slideVertical {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Priority Message Animation */
+@keyframes priorityPulse {
+  0% {
+    text-shadow: 0 0 4px #ef4444;
+  }
+  50% {
+    text-shadow: 0 0 12px #ef4444;
+  }
+  100% {
+    text-shadow: 0 0 4px #ef4444;
+  }
+}
+
+.protocol-line {
+  position: relative;
+  display: inline-block;
+}
+
+.protocol-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #22c55e;
+  transform-origin: right;
+  animation: underline 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.protocol-line.animate-glow {
+  animation: glow 2s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+.font-mono {
+  text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  animation: flicker 0.15s infinite;
+  letter-spacing: 0.1em;
+}
+
+.initialization-line {
+  transform-origin: left center;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+/* Priority Message Styling */
+.text-red-500 {
+  animation: priorityPulse 2s infinite;
+}
